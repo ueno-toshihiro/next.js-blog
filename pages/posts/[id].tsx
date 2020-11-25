@@ -1,18 +1,28 @@
-import Layout from '../../components/layout'
-import { getAllPostIds, getPostData } from '../../lib/posts'
+import Layout from '../../components/layout';
+import { getAllPostIds, getPostData } from '../../lib/posts';
+import { GetStaticProps, GetStaticPaths } from 'next';
 
-export default function Post({ postData }) {
+type PostPropsType = {
+  postData: {
+    id: string;
+    title: string;
+    date: string;
+    contentHtml: string;
+  };
+};
+
+export default function Post({ postData }: PostPropsType): JSX.Element {
   return (
     <Layout>
       {postData.title}
-      <br/>
+      <br />
       {postData.id}
-      <br/>
+      <br />
       {postData.date}
-      <br/>
+      <br />
       <div dangerouslySetInnerHTML={{ __html: postData.contentHtml }} />
     </Layout>
-  )
+  );
 }
 
 /**
@@ -21,13 +31,13 @@ export default function Post({ postData }) {
  * 静的なページを生成する
  * @return {Promise<{paths: *, fallback: boolean}>}
  */
-export async function getStaticPaths() {
-  const paths = getAllPostIds()
+export const getStaticPaths: GetStaticPaths = async () => {
+  const paths = getAllPostIds();
   return {
     paths,
-    fallback: false
-  }
-}
+    fallback: false,
+  };
+};
 
 /**
  * この関数がファイル内に存在すると、サーバーで静的なページをリターンされたデータを元に
@@ -35,11 +45,11 @@ export async function getStaticPaths() {
  * @param params {object} { params: { id: 'xxx' } }
  * @return {Promise<{props: {postData: {[p: string]: any, id: *}}}>}
  */
-export async function getStaticProps({ params }) {
-  const postData = await getPostData(params.id)
+export const getStaticProps: GetStaticProps = async ({ params }) => {
+  const postData = await getPostData(params.id as string);
   return {
     props: {
-      postData
-    }
-  }
-}
+      postData,
+    },
+  };
+};
