@@ -3,6 +3,7 @@ import Link from 'next/link';
 import Layout, { siteTitle } from '../components/layout';
 import utilStyles from '../styles/utils.module.scss';
 import { getSortedPostsData } from '../lib/posts';
+import { useRouter } from 'next/router';
 
 type HomePropsType = {
   allPostsData: {
@@ -13,6 +14,10 @@ type HomePropsType = {
 };
 
 export default function Home({ allPostsData }: HomePropsType): JSX.Element {
+  const router = useRouter();
+  const { pid } = router.query;
+  console.log({router});
+
   return (
     <Layout home>
       <Head>
@@ -35,6 +40,8 @@ export default function Home({ allPostsData }: HomePropsType): JSX.Element {
             </li>
           ))}
         </ul>
+
+        <p>{pid}</p>
       </section>
     </Layout>
   );
