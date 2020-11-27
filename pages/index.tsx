@@ -18,6 +18,11 @@ export default function Home({ allPostsData }: HomePropsType): JSX.Element {
   const { pid } = router.query;
   console.log({router});
 
+  const routerHandler = (id: string):void => {
+    // use Link test.
+    router.push(`posts/${id}`);
+  }
+
   return (
     <Layout home>
       <Head>
@@ -37,6 +42,11 @@ export default function Home({ allPostsData }: HomePropsType): JSX.Element {
               <Link href={`/posts/${id}`}>
                 <a>{id}</a>
               </Link>
+              <div
+                className={utilStyles.linkDefault}
+                onClick={() => routerHandler(id)}>
+                Use Router Link: {id}
+              </div>
             </li>
           ))}
         </ul>

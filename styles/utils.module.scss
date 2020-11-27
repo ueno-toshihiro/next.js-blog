@@ -50,3 +50,12 @@
 .lightText {
     color: #999;
 }
+
+.linkDefault {
+    color: #0070f3;
+    cursor: pointer;
+    font-size: 0.8rem;
+    &:hover {
+      color: darkred;
+    }
+}
