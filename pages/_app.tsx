@@ -1,9 +1,33 @@
 import { AppProps } from 'next/app';
 import '../styles/global.scss';
 
+import { createGlobalStyle, ThemeProvider } from 'styled-components'
+
+// styled-components
+const GlobalStyle = createGlobalStyle`
+  body {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+  }
+`
+
+const theme = {
+  colors: {
+    primary: '#c647f9',
+  },
+}
+
 export default function App({ Component, pageProps }: AppProps) {
   console.log({ pageProps });
-  return <Component {...pageProps} />;
+  return (
+    <>
+      <GlobalStyle />
+      <ThemeProvider theme={theme}>
+        <Component {...pageProps} />
+      </ThemeProvider>
+    </>
+  );
 }
 
 // パフォーマンス測定

@@ -4,6 +4,13 @@ import Layout, { siteTitle } from '@/components/layout';
 import utilStyles from '../styles/utils.module.scss';
 import { getSortedPostsData } from '../lib/posts';
 import { useRouter } from 'next/router';
+import styled, {StyledComponent} from 'styled-components';
+import React from "react";
+
+const Title: StyledComponent<"h1", any, {}, never> = styled.h2`
+  font-size: 1.2rem;
+  color: ${({ theme }) => theme.colors.primary};
+`
 
 type HomePropsType = {
   allPostsData: {
@@ -33,7 +40,7 @@ export default function Home({ allPostsData }: HomePropsType): JSX.Element {
         <ul className={utilStyles.list}>
           {allPostsData.map(({ id, date, title }) => (
             <li className={utilStyles.listItem} key={id}>
-              {title}
+              <Title>{title}</Title>
               <br />
               {id}
               <br />
