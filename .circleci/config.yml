@@ -1,0 +1,71 @@
+version: '2.1'
+orbs:
+  slack: circleci/slack@4.0
+jobs:
+  notify:
+    docker:
+      - image: 'cimg/base:stable'
+
+    parameters:
+      slack-title:
+        type: string
+        default: 'Parameter set title !'
+      slack-message:
+        type: string
+        default: 'parameter set message!'
+
+    steps:
+      - run:
+          name: Slack notification
+          #  >> $BASH_ENV に変数を代入するとどこでも値（UENO-TITLE）を取得できる！
+          command: |
+            echo "$CIRCLE_BUILD_URL : ${CIRCLE_BUILD_URL}"
+            echo "CIRCLE_COMPARE_URL : ${CIRCLE_COMPARE_URL}"
+            echo "CIRCLE_BRANCH : ${CIRCLE_BRANCH}"
+
+            link=$CIRCLE_BUILD_URL
+            text="CircleCi Build url"
+            echo "export TITLE_LINK='$link'" >> $BASH_ENV
+            echo "export TITLE_TEXT='$text'" >> $BASH_ENV
+      - slack/notify:
+          channel: "#code"
+          event: always
+          custom: |
+            {
+              "attachments": [
+                {
+                  "color": "#36a64f",
+                  "blocks": [
+                    {
+                      "type": "section",
+                      "fields": [
+                        {
+                          "type": "mrkdwn",
+                          "text": "*<${TITLE_LINK}|${TITLE_TEXT}> TEST <<parameters.slack-title>>*"
+                        },
+                        {
+                          "type": "mrkdwn",
+                          "text": "git branch::${CIRCLE_BRANCH}"
+                        },
+                        {
+                          "type": "mrkdwn",
+                          "text": "command set variables message:\n 改行 ${TITLE_TEXT}"
+                        },
+                        {
+                          "type": "mrkdwn",
+                          "text": "parameters set message: *<<parameters.slack-message>>*"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+
+
+workflows:
+  send-notification:
+    jobs:
+      - notify:
+          context: slack-notice
+          slack-message: 'workflow set slack message!'
