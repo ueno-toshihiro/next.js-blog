@@ -2,7 +2,7 @@ version: 2.1
 orbs:
   slack: circleci/slack@4.1.3
 jobs:
-  notify:
+  build:
     working_directory: ~/mern-starter # ステップが実行されるディレクトリ
     docker: # Docker でステップを実行します
       - image: circleci/node:10.16.3 # このイメージをすべての `steps` が実行されるプライマリ コンテナとして使用します
@@ -45,21 +45,87 @@ jobs:
             echo "CIRCLE_BRANCH : ${CIRCLE_BRANCH}"
             # CircleCI Status
             echo "CCI_STATUS : ${CCI_STATUS}"
+            # CircleCI Tag is github tag
+            echo "CIRCLE_TAG : ${CIRCLE_TAG}"
+            echo "SLACK_PARAM_TAGPATTERN : ${SLACK_PARAM_TAGPATTERN}"
+            echo "CIRCLE_BUILD_NUM : ${CIRCLE_BUILD_NUM}"
+            echo "GITHUB_TOKEN : ${GITHUB_TOKEN}"
+
+            successMsg="SUCCESS !!"
+            if [ -n "${CIRCLE_TAG}" ]; then
+              successMsg="*Tag*: \n $CIRCLE_TAG"
+            fi
 
             link=$CIRCLE_BUILD_URL
             text="CircleCi Build url"
-            echo "export TITLE_LINK='$link'" >> $BASH_ENV
-            echo "export TITLE_TEXT='$text'" >> $BASH_ENV
+            echo "export TITLE_LINK=$link" >> $BASH_ENV
+            echo "export TITLE_TEXT=$text" >> $BASH_ENV
+            echo "export SUCCESS_MSG=$successMsg" >> $BASH_ENV
+            # memo success_tagged_deploy_1 template need `git tag` but GITHUB_TOKEN empty??
 
       - slack/notify:
           event: fail
           channel: "#code"
+          mentions: '@UserName'
           template: basic_fail_1
 
       - slack/notify:
           event: pass
           channel: "#code"
           template: success_tagged_deploy_1
+
+      # template `success_tagged_deploy_1` customize
+      - slack/notify:
+          event: pass
+          channel: "#code"
+          custom: |
+            {
+              "blocks": [
+                {
+                  "type": "header",
+                  "text": {
+                    "type": "plain_text",
+                    "text": "Deployment Successful! :tada:",
+                    "emoji": true
+                  }
+                },
+                {
+                  "type": "section",
+                  "fields": [
+                    {
+                      "type": "mrkdwn",
+                      "text": "*Project*: \n $CIRCLE_PROJECT_REPONAME"
+                    },
+                    {
+                      "type": "mrkdwn",
+                      "text": "*When*: \n $(date +'%m/%d/%Y %T')"
+                    },
+                    {
+                      "type": "mrkdwn",
+                      "text": "$SUCCESS_MSG"
+                    }
+                  ],
+                  "accessory": {
+                    "type": "image",
+                    "image_url": "https://assets.brandfolder.com/otz5mn-bw4j2w-6jzqo8/original/circle-logo-badge-black.png",
+                    "alt_text": "CircleCI logo"
+                  }
+                },
+                {
+                  "type": "actions",
+                  "elements": [
+                    {
+                      "type": "button",
+                      "text": {
+                        "type": "plain_text",
+                        "text": "View Job"
+                      },
+                      "url": "${CIRCLE_BUILD_URL}"
+                    }
+                  ]
+                }
+              ]
+            }
 
       - slack/notify:
           event: pass
@@ -96,10 +162,10 @@ jobs:
               ]
             }
 
-
 workflows:
-  send-notification:
+  version: 2
+  test-notice:
     jobs:
-      - notify:
+      - build:
           context: slack-notice
           slack-message: 'workflow set slack message!'
