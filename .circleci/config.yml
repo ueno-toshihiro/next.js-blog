@@ -19,17 +19,31 @@ jobs:
           name: Slack notification
           #  >> $BASH_ENV に変数を代入するとどこでも値（UENO-TITLE）を取得できる！
           command: |
+            # CircleCI URL
             echo "$CIRCLE_BUILD_URL : ${CIRCLE_BUILD_URL}"
+            # Git branch URL but empty url
             echo "CIRCLE_COMPARE_URL : ${CIRCLE_COMPARE_URL}"
+            # Git branch name
             echo "CIRCLE_BRANCH : ${CIRCLE_BRANCH}"
 
             link=$CIRCLE_BUILD_URL
             text="CircleCi Build url"
             echo "export TITLE_LINK='$link'" >> $BASH_ENV
             echo "export TITLE_TEXT='$text'" >> $BASH_ENV
+
       - slack/notify:
+          event: fail
           channel: "#code"
+          template: basic_fail_1
+
+      - slack/notify:
+          event: pass
+          channel: "#code"
+          template: success_tagged_deploy_1
+
+      - slack/notify:
           event: always
+          channel: "#code"
           custom: |
             {
               "attachments": [
