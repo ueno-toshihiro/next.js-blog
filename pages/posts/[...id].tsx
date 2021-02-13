@@ -5,6 +5,7 @@ import { GetStaticProps, GetStaticPaths } from 'next';
 type PostPropsType = {
   postData: {
     id: string;
+    user: string;
     title: string;
     date: string;
     contentHtml: string;
@@ -18,6 +19,9 @@ export default function Post({ postData }: PostPropsType): JSX.Element {
       <br />
       {postData.id}
       <br />
+      <h1>
+        @@@@USER@@@
+      </h1>
       {postData.date}
       <br />
       <div dangerouslySetInnerHTML={{ __html: postData.contentHtml }} />
@@ -32,13 +36,24 @@ export default function Post({ postData }: PostPropsType): JSX.Element {
  * @return {Promise<{paths: *, fallback: boolean}>}
  */
 export const getStaticPaths: GetStaticPaths = async () => {
-  const paths = getAllPostIds();
   /**
-   * Dynamic route [id].tsx
+   * Dynamic route [...id].tsx
    * 下記2つのパスに対応している
-   * /posts/ssg-ssr
-   * /posts/pre-rendering
+   * /posts/ssg-ssr/ue1
+   * /posts/pre-rendering/ue2
    */
+  const paths = [
+    {
+      params: {
+        id: ['ssg-ssr', 'ue1']
+      }
+    },
+    {
+      params: {
+        id: ['pre-rendering', 'ue2']
+      }
+    }
+  ]
   return {
     paths,
     fallback: false,
@@ -52,8 +67,8 @@ export const getStaticPaths: GetStaticPaths = async () => {
  * @return {Promise<{props: {postData: {[p: string]: any, id: *}}}>}
  */
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  console.log({params});
-  const postData = await getPostData(params.id as string);
+  console.log(`PARAMS::${ params.id }`);
+  const postData = await getPostData(params.id[0] as string);
   return {
     props: {
       postData,
