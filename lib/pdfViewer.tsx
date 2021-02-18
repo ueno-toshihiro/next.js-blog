@@ -3,13 +3,12 @@
  * usage:
  * components/pdf
  */
-import { Document, Page } from "react-pdf";
-import { pdfjs } from "react-pdf";
+import { Document, Page, pdfjs } from "react-pdf";
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
 import { useEffect, useState } from 'react';
 
-const PdfViewer = ({ file, width, pageNumber, setTotalPageNum, isSingle }) => {
+const PdfViewer = ({ file, width, pageNumber, setTotalPageNum, isSingle=true, inputRef=null }) => {
   const [pageInfo, setPageInfo] = useState(null);
   const [pageArr, setPageArr] = useState([]);
 
@@ -22,6 +21,7 @@ const PdfViewer = ({ file, width, pageNumber, setTotalPageNum, isSingle }) => {
       arr[i] = i;
     }
     setPageArr(arr);
+    setTotalPageNum(pageInfo);
   }, [pageInfo]);
 
   // ページめくり
@@ -35,8 +35,8 @@ const PdfViewer = ({ file, width, pageNumber, setTotalPageNum, isSingle }) => {
 
   // 一覧表示
   return (
-    <Document file={file} onLoadSuccess={setPageInfo}>
-      {pageArr.map((i) => <Page pageNumber={i + 1} width={width} />)}
+    <Document file={file} onLoadSuccess={setPageInfo} inputRef={inputRef}>
+      {pageArr.map((i) => <Page key={i} pageNumber={i + 1} width={width} />)}
     </Document>
   )
 };
