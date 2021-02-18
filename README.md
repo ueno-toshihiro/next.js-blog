@@ -5,9 +5,9 @@ This is a starter template for [Learn Next.js](https://nextjs.org/learn).
 ```
 npm run dev
 ```
+start server on 0.0.0.0:3000, url: http://localhost:3000
 
 Add pull Request to github. and display the comment at vercel admin.
-
 
 ## Amplify
 ```
