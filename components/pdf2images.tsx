@@ -1,11 +1,15 @@
-import { useEffect, useState, useRef } from 'react';
+import { useState } from 'react';
 import styled from 'styled-components';
+
 import dynamic from 'next/dynamic';
 const PdfViewer = dynamic(() => import('../lib/pdfViewer'), { ssr: false });
 
 const Label = styled.div``;
 const Input = styled.input`
   // display: none;
+`;
+const HideViewer = styled.div`
+  display: none;
 `;
 
 const onChange = (event, setFileName, setFile) => {
@@ -18,9 +22,7 @@ const onChange = (event, setFileName, setFile) => {
 export default function Index(): JSX.Element {
   const [files, setFiles] = useState(null);
   const [fileName, setFileName] = useState('');
-  const [pageNum, setPageNum] = useState(1);
   const [docInfo, setDocInfo] = useState({ numPages: 0 });
-  console.log(docInfo);
 
   return (
     <div>
@@ -28,18 +30,16 @@ export default function Index(): JSX.Element {
         <PdfViewer
           file={files[0]}
           width="500"
-          pageNumber={pageNum}
+          pageNumber={1}
           setTotalPageNum={setDocInfo}
+          isSingle={false}
         />
       )}
 
       <Input type="file" onChange={e => onChange(e, setFileName, setFiles)} />
 
       <Label>{fileName}</Label>
-      <p>Page {pageNum} of {docInfo.numPages}</p>
-
-      <button disabled={pageNum <= 1} onClick={() => setPageNum(pageNum - 1)}>Prev</button>
-      <button disabled={docInfo.numPages <= pageNum} onClick={() => setPageNum(pageNum + 1)}>Next</button>
+      <p>Page {docInfo.numPages}</p>
     </div>
   );
 }
