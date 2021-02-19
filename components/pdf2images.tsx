@@ -8,7 +8,7 @@ const Label = styled.div``;
 const Input = styled.input`
   // display: none;
 `;
-const HideViewer = styled.div`
+const HideCanvas = styled.div`
   display: none;
 `;
 
@@ -19,9 +19,7 @@ const onChange = (event, setFileName, setFile) => {
   setFile(files);
 }
 
-const getImages = (e, ref, setImages) => {
-  e.preventDefault();
-
+const getImages = (ref, setImages) => {
   if (!ref.current) return;
 
   const canvas = ref.current.querySelectorAll('canvas');
@@ -42,17 +40,28 @@ export default function Index(): JSX.Element {
   const [images, setImages] = useState(null);
   const ref = createRef();
 
+  const onPageRenderSuccess = (d) => {
+    // すべてのページがcanvasになったタイミングでcanvasをpngへ変換
+    if (docInfo.numPages === d._pageIndex + 1) {
+      getImages(ref, setImages);
+    }
+  }
+
   return (
     <div>
       {files && (
-        <PdfViewer
-          file={files[0]}
-          width={100}
-          pageNumber={1}
-          setTotalPageNum={setDocInfo}
-          isSingle={false}
-          inputRef={ref}
-        />
+        <HideCanvas>
+          <PdfViewer
+            file={files[0]}
+            width={600} // widthでimageの解像度も変わる/指定しないとPDFと同じ解像度
+            pageNumber={1}
+            setTotalPageNum={setDocInfo}
+            isSingle={false}
+            inputRef={ref}
+            fileName={fileName}
+            onPageRenderSuccess={onPageRenderSuccess}
+          />
+        </HideCanvas>
       )}
 
       <p>Base64 image list</p>
@@ -65,7 +74,7 @@ export default function Index(): JSX.Element {
       <Label>{fileName}</Label>
       <p>Page {docInfo.numPages}</p>
 
-      <button onClick={(e) => getImages(e, ref, setImages)}>画像に変換する</button>
+      {/*<button onClick={() => getImages(ref, setImages)}>画像に変換する</button>*/}
     </div>
   );
 }

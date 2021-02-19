@@ -8,10 +8,18 @@ pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/$
 
 import { useEffect, useState } from 'react';
 
-const PdfViewer = ({ file, width, pageNumber, setTotalPageNum, isSingle=true, inputRef=null }) => {
+const PdfViewer = ({
+  file,
+  width=null,
+  pageNumber,
+  setTotalPageNum,
+  isSingle=true,
+  inputRef=null,
+  fileName='',
+  onPageRenderSuccess=null,
+}) => {
   const [pageInfo, setPageInfo] = useState(null);
   const [pageArr, setPageArr] = useState([]);
-
 
   useEffect(() => {
     if (!pageInfo) return;
@@ -36,7 +44,19 @@ const PdfViewer = ({ file, width, pageNumber, setTotalPageNum, isSingle=true, in
   // 一覧表示
   return (
     <Document file={file} onLoadSuccess={setPageInfo} inputRef={inputRef}>
-      {pageArr.map((i) => <Page key={i} pageNumber={i + 1} width={width} />)}
+      {pageArr.map((i) => {
+        return (
+          <Page
+            key={i}
+            pageNumber={i + 1}
+            width={width}
+            textContent={'sss'}
+            onRenderSuccess={onPageRenderSuccess}
+          >
+            <div>{fileName} No.{i + 1}</div>
+          </Page>
+        )
+      })}
     </Document>
   )
 };
