@@ -4,13 +4,13 @@ import Layout, { siteTitle } from '@/components/layout';
 import utilStyles from '../styles/utils.module.scss';
 import { getSortedPostsData } from '../lib/posts';
 import { useRouter } from 'next/router';
-import styled, {StyledComponent} from 'styled-components';
-import React from "react";
+import styled from 'styled-components';
+import React from 'react';
 
-const Title: StyledComponent<"h1", any, {}, never> = styled.h2`
+const Title = styled.h2`
   font-size: 1.2rem;
   color: ${({ theme }) => theme.colors.primary};
-`
+`;
 
 type HomePropsType = {
   allPostsData: {
@@ -23,12 +23,12 @@ type HomePropsType = {
 export default function Home({ allPostsData }: HomePropsType): JSX.Element {
   const router = useRouter();
   const { pid } = router.query;
-  console.log({router});
+  console.log({ router });
 
-  const routerHandler = (id: string):void => {
+  const routerHandler = (id: string): void => {
     // use Link test.
     router.push(`posts/${id}`);
-  }
+  };
 
   return (
     <Layout home>
@@ -49,9 +49,7 @@ export default function Home({ allPostsData }: HomePropsType): JSX.Element {
               <Link href={`/posts/${id}`}>
                 <a>{id}</a>
               </Link>
-              <div
-                className={utilStyles.linkDefault}
-                onClick={() => routerHandler(id)}>
+              <div className={utilStyles.linkDefault} onClick={() => routerHandler(id)}>
                 Use Router Link: {id}
               </div>
             </li>

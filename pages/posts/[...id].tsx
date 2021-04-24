@@ -1,5 +1,6 @@
+import * as React from 'react';
 import Layout from '@/components/layout';
-import { getAllPostIds, getPostData } from '../../lib/posts';
+import { getPostData } from '../../lib/posts';
 import { GetStaticProps, GetStaticPaths } from 'next';
 
 type PostPropsType = {
@@ -19,9 +20,7 @@ export default function Post({ postData }: PostPropsType): JSX.Element {
       <br />
       {postData.id}
       <br />
-      <h1>
-        @@@@USER@@@
-      </h1>
+      <h1>@@@@USER@@@</h1>
       {postData.date}
       <br />
       <div dangerouslySetInnerHTML={{ __html: postData.contentHtml }} />
@@ -45,15 +44,15 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const paths = [
     {
       params: {
-        id: ['ssg-ssr', 'ue1']
-      }
+        id: ['ssg-ssr', 'ue1'],
+      },
     },
     {
       params: {
-        id: ['pre-rendering', 'ue2']
-      }
-    }
-  ]
+        id: ['pre-rendering', 'ue2'],
+      },
+    },
+  ];
   return {
     paths,
     fallback: false,
@@ -67,7 +66,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
  * @return {Promise<{props: {postData: {[p: string]: any, id: *}}}>}
  */
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  console.log(`PARAMS::${ params.id }`);
+  console.log(`PARAMS::${params.id}`);
   const postData = await getPostData(params.id[0] as string);
   return {
     props: {

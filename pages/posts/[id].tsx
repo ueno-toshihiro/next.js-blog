@@ -1,3 +1,4 @@
+import * as React from 'react';
 import Layout from '@/components/layout';
 import { getAllPostIds, getPostData } from '../../lib/posts';
 import { GetStaticProps, GetStaticPaths } from 'next';
@@ -52,7 +53,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
  * @return {Promise<{props: {postData: {[p: string]: any, id: *}}}>}
  */
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  console.log({params});
+  console.log({ params });
   const postData = await getPostData(params.id as string);
   return {
     props: {

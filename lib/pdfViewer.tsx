@@ -1,31 +1,43 @@
+/* eslint-disable react/prop-types */
 /**
  * initial pdf to image component
  * usage:
  * components/pdf
  */
-import { Document, Page, pdfjs } from "react-pdf";
+import * as React from 'react';
+import { useEffect, useState } from 'react';
+import { Document, Page, pdfjs } from 'react-pdf';
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
-import { useEffect, useState } from 'react';
+type Props = {
+  file: any;
+  width?: number;
+  pageNumber: number;
+  setTotalPageNum: ({ numPages: number }) => void;
+  isSingle?: boolean;
+  inputRef?: any;
+  fileName?: string;
+  onPageRenderSuccess?: (d: { _pageIndex: number }) => void;
+};
 
-const PdfViewer = ({
+const PdfViewer: React.FC<Props> = ({
   file,
-  width=null,
+  width = null,
   pageNumber,
   setTotalPageNum,
-  isSingle=true,
-  inputRef=null,
-  fileName='',
-  onPageRenderSuccess=null,
+  isSingle = true,
+  inputRef = null,
+  fileName = '',
+  onPageRenderSuccess = null,
 }) => {
-  const [pageInfo, setPageInfo] = useState(null);
+  const [pageInfo, setPageInfo] = useState<{ numPages: number } | null>(null);
   const [pageArr, setPageArr] = useState([]);
 
   useEffect(() => {
     if (!pageInfo) return;
 
     const arr = [];
-    for (let i=0; i<pageInfo.numPages; i++) {
+    for (let i = 0; i < pageInfo.numPages; i++) {
       arr[i] = i;
     }
     setPageArr(arr);
@@ -36,9 +48,9 @@ const PdfViewer = ({
   if (isSingle) {
     return (
       <Document file={file} onLoadSuccess={setTotalPageNum}>
-        <Page pageNumber={pageNumber} width={width}/>
+        <Page pageNumber={pageNumber} width={width} />
       </Document>
-    )
+    );
   }
 
   // 一覧表示
@@ -53,12 +65,14 @@ const PdfViewer = ({
             textContent={'sss'}
             onRenderSuccess={onPageRenderSuccess}
           >
-            <div>{fileName} No.{i + 1}</div>
+            <div>
+              {fileName} No.{i + 1}
+            </div>
           </Page>
-        )
+        );
       })}
     </Document>
-  )
+  );
 };
 
 export default PdfViewer;

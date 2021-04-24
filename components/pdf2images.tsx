@@ -1,3 +1,4 @@
+import * as React from 'react';
 import { createRef, useState } from 'react';
 import styled from 'styled-components';
 
@@ -6,7 +7,7 @@ const PdfViewer = dynamic(() => import('../lib/pdfViewer'), { ssr: false });
 
 const Label = styled.div``;
 const Input = styled.input`
-  // display: none;
+  /* display: none; */
 `;
 const HideCanvas = styled.div`
   display: none;
@@ -17,7 +18,7 @@ const onChange = (event, setFileName, setFile) => {
   const files = event.target.files;
   setFileName(targetName);
   setFile(files);
-}
+};
 
 const getImages = (ref, setImages) => {
   if (!ref.current) return;
@@ -27,25 +28,25 @@ const getImages = (ref, setImages) => {
   const images = [...canvas].map((cvs) => {
     const png = cvs.toDataURL();
     return png;
-  })
+  });
 
-  console.log({images});
+  console.log({ images });
   setImages(images);
-}
+};
 
 export default function Index(): JSX.Element {
   const [files, setFiles] = useState(null);
   const [fileName, setFileName] = useState('');
   const [docInfo, setDocInfo] = useState({ numPages: 0 });
   const [images, setImages] = useState(null);
-  const ref = createRef();
+  const ref = createRef<React.RefObject<HTMLCanvasElement> | null>();
 
   const onPageRenderSuccess = (d) => {
     // すべてのページがcanvasになったタイミングでcanvasをpngへ変換
     if (docInfo.numPages === d._pageIndex + 1) {
       getImages(ref, setImages);
     }
-  }
+  };
 
   return (
     <div>
@@ -65,11 +66,16 @@ export default function Index(): JSX.Element {
       )}
 
       <p>Base64 image list</p>
-      {images && images.map((image, i) => {
-        return <div key={i}><img src={image} width="100px" /></div>;
-      })}
+      {images &&
+        images.map((image, i) => {
+          return (
+            <div key={i}>
+              <img src={image} width="100px" />
+            </div>
+          );
+        })}
 
-      <Input type="file" onChange={e => onChange(e, setFileName, setFiles)} />
+      <Input type="file" onChange={(e) => onChange(e, setFileName, setFiles)} />
 
       <Label>{fileName}</Label>
       <p>Page {docInfo.numPages}</p>

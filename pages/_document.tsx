@@ -1,21 +1,20 @@
-import Document, {Html, Head, Main, NextScript} from 'next/document';
-import {ServerStyleSheet} from 'styled-components';
+import * as React from 'react';
+import Document, { Html, Head, Main, NextScript } from 'next/document';
+import { ServerStyleSheet } from 'styled-components';
 
 type Props = {
   styleTags: any;
 };
 
 export default class MyDocument extends Document<Props> {
-  static getInitialProps({renderPage}) {
+  static getInitialProps({ renderPage }) {
     const sheet = new ServerStyleSheet();
 
-    const page = renderPage(App => props =>
-      sheet.collectStyles(<App {...props} />),
-    );
+    const page = renderPage((App) => (props) => sheet.collectStyles(<App {...props} />));
 
     const styleTags = sheet.getStyleElement();
 
-    return {...page, styleTags};
+    return { ...page, styleTags };
   }
 
   render() {
@@ -26,8 +25,8 @@ export default class MyDocument extends Document<Props> {
           {this.props.styleTags}
         </Head>
         <body>
-        <Main />
-        <NextScript />
+          <Main />
+          <NextScript />
         </body>
       </Html>
     );
