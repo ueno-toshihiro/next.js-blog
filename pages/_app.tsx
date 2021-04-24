@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { AppProps } from 'next/app';
 import '../styles/global.scss';
+import theme from '@/components/theme';
 
 import { createGlobalStyle, ThemeProvider } from 'styled-components';
 
@@ -12,12 +13,6 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
   }
 `;
-
-const theme = {
-  colors: {
-    primary: '#c647f9',
-  },
-};
 
 export default function App({ Component, pageProps }: AppProps) {
   console.log({ pageProps });
