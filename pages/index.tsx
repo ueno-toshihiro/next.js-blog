@@ -67,6 +67,14 @@ export default function Home({ allPostsData }: HomePropsType): JSX.Element {
           <a>PDF Viewer</a>
         </Link>
       </section>
+
+      {/* UI Components */}
+      <section>
+        <Title>UI Components</Title>
+        <Link href={`/ui`}>
+          <a>UI Components</a>
+        </Link>
+      </section>
     </Layout>
   );
 }
