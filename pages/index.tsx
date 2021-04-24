@@ -35,6 +35,8 @@ export default function Home({ allPostsData }: HomePropsType): JSX.Element {
       <Head>
         <title>{siteTitle}</title>
       </Head>
+
+      {/* Markdown blog */}
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
         <h2 className={utilStyles.headingLg}>BLOG</h2>
         <ul className={utilStyles.list}>
@@ -55,8 +57,15 @@ export default function Home({ allPostsData }: HomePropsType): JSX.Element {
             </li>
           ))}
         </ul>
-
         <p>{pid}</p>
+      </section>
+
+      {/* PDF Viewer */}
+      <section>
+        <Title>PDF Viewer</Title>
+        <Link href={`/pdf`}>
+          <a>PDF Viewer</a>
+        </Link>
       </section>
     </Layout>
   );
