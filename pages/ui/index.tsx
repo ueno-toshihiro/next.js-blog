@@ -1,22 +1,12 @@
 import * as React from 'react';
-import * as Styled from './ui.styled';
-import { useState } from 'react';
+import * as Styled from '@/components/ui/ui.styled';
 import Layout from '@/components/layout';
 import Button from '@/components/ui/button';
-import ButtonToggle from './button-toggle';
-
-enum Toggle {
-  item1,
-  item2
-}
+import ButtonToggle from '@/components/ui/button-toggle';
+import ClipBoardCopy from '@/components/ui/clip-board-copy';
+import TextField from '@/components/ui/text-field';
 
 export default function Index(): JSX.Element {
-  const [selectedItem, setSelectedItem] = useState(Toggle.item1); // default Toggle.item1
-
-  const onToggle = React.useCallback((selected: Toggle) => {
-    setSelectedItem(selected);
-  }, []);
-
   return (
     <Layout>
       <Styled.Title>UI Components</Styled.Title>
@@ -33,6 +23,17 @@ export default function Index(): JSX.Element {
         <ButtonToggle />
       </Styled.Section>
 
+      {/* text field */}
+      <Styled.Section>
+        <p>Text field</p>
+        <TextField onChange={(e) => console.log(e.target.value)} />
+      </Styled.Section>
+
+      {/* Clip board copy */}
+      <Styled.Section>
+        <p>Clip board copy</p>
+        <ClipBoardCopy text="default text!!" />
+      </Styled.Section>
     </Layout>
   );
 }
