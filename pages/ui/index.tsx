@@ -50,6 +50,14 @@ export default function Index(): JSX.Element {
       <Styled.Section>
         <p>Phone Field</p>
         <PhoneField
+          isUseInputComponent={false}
+          value={phoneFieldValue}
+          onChange={setPhoneFieldValue}
+        />
+        <br/>
+        <p>Phone Field (use inputComponent)</p>
+        <PhoneField
+          isUseInputComponent
           value={phoneFieldValue}
           onChange={setPhoneFieldValue}
         />
