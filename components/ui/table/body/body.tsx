@@ -2,9 +2,9 @@ import * as React from 'react';
 import * as Styled from './body.styled';
 import Button from '@/components/ui/button';
 
-interface Props {
+export interface Props {
   item: {
-    date: string;
+    [key: string]: string;
   };
 }
 

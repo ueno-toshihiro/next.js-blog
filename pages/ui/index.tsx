@@ -5,8 +5,13 @@ import Button from '@/components/ui/button';
 import ButtonToggle from '@/components/ui/button-toggle';
 import ClipBoardCopy from '@/components/ui/clip-board-copy';
 import TextField from '@/components/ui/text-field';
+import Table from '@/components/ui/table';
+import PhoneField from '@/components/ui/phone-field';
 
 export default function Index(): JSX.Element {
+  // PhoneField
+  const [phoneFieldValue, setPhoneFieldValue] = React.useState<string>('');
+  
   return (
     <Layout>
       <Styled.Title>UI Components</Styled.Title>
@@ -33,6 +38,22 @@ export default function Index(): JSX.Element {
       <Styled.Section>
         <p>Clip board copy</p>
         <ClipBoardCopy text="default text!!" />
+      </Styled.Section>
+
+      {/* Table */}
+      <Styled.Section>
+        <p>Table</p>
+        <Table />
+      </Styled.Section>
+
+      {/* react-phone-number-input */}
+      <Styled.Section>
+        <p>Phone Field</p>
+        <PhoneField
+          value={phoneFieldValue}
+          onChange={setPhoneFieldValue}
+        />
+        <p>{phoneFieldValue}</p>
       </Styled.Section>
     </Layout>
   );
