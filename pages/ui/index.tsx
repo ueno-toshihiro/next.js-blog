@@ -7,11 +7,15 @@ import ClipBoardCopy from '@/components/ui/clip-board-copy';
 import TextField from '@/components/ui/text-field';
 import Table from '@/components/ui/table';
 import PhoneField from '@/components/ui/phone-field';
+import { ArrowDown, ArrowLeft } from '@/components/ui/icons';
+import IconButton from '../../components/ui/icon-button';
+import IconLink from '../../components/ui/icon-link';
+
 
 export default function Index(): JSX.Element {
   // PhoneField
   const [phoneFieldValue, setPhoneFieldValue] = React.useState<string>('');
-  
+
   return (
     <Layout>
       <Styled.Title>UI Components</Styled.Title>
@@ -62,6 +66,30 @@ export default function Index(): JSX.Element {
           onChange={setPhoneFieldValue}
         />
         <p>{phoneFieldValue}</p>
+      </Styled.Section>
+
+      <Styled.Section>
+        <p>Icons</p>
+        <ArrowDown diameter={32} />
+        <ArrowLeft diameter={32} />
+      </Styled.Section>
+      
+      <Styled.Section>
+        <p>Icons Button</p>
+        <IconButton onClick={() => console.log('Icon Click!')}>
+          <ArrowDown diameter={32} color={'#fff'} />
+        </IconButton>
+      </Styled.Section>
+
+      <Styled.Section>
+        <p>Icons Link</p>
+        <IconLink
+          href={'javascript:console.log("Icon Click!")'}
+          label="Icon Link"
+          style={{ display: 'flex', alignItems: 'center' }}
+        >
+          <ArrowDown diameter={32} />
+        </IconLink>
       </Styled.Section>
     </Layout>
   );
