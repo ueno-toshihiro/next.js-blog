@@ -10,11 +10,13 @@ import PhoneField from '@/components/ui/phone-field';
 import { ArrowDown, ArrowLeft } from '@/components/ui/icons';
 import IconButton from '../../components/ui/icon-button';
 import IconLink from '../../components/ui/icon-link';
+import Slider from '../../components/ui/slider';
 
 
 export default function Index(): JSX.Element {
   // PhoneField
   const [phoneFieldValue, setPhoneFieldValue] = React.useState<string>('');
+  const [rangeValue, setRangeValue] = React.useState<number>(0.5);
 
   return (
     <Layout>
@@ -90,6 +92,18 @@ export default function Index(): JSX.Element {
         >
           <ArrowDown diameter={32} />
         </IconLink>
+      </Styled.Section>
+
+      <Styled.Section>
+        <p>Range slider</p>
+        <Slider
+          max={1}
+          min={0.1}
+          onChange={setRangeValue}
+          step={0.05}
+          value={rangeValue}
+        />
+        <p>{rangeValue}</p>
       </Styled.Section>
     </Layout>
   );
