@@ -4,6 +4,7 @@ import Layout from '@/components/layout';
 import Button from '@/components/ui/button';
 import ButtonToggle from '@/components/ui/button-toggle';
 import ClipBoardCopy from '@/components/ui/clip-board-copy';
+import TextArea from '@/components/ui/text-area';
 import TextField from '@/components/ui/text-field';
 import Table from '@/components/ui/table';
 import PhoneField from '@/components/ui/phone-field';
@@ -11,6 +12,7 @@ import { ArrowDown, ArrowLeft } from '@/components/ui/icons';
 import IconButton from '../../components/ui/icon-button';
 import IconLink from '../../components/ui/icon-link';
 import Slider from '../../components/ui/slider';
+import TextData2TextHtml from '../../components/textData2TextHtml';
 
 
 export default function Index(): JSX.Element {
@@ -38,6 +40,22 @@ export default function Index(): JSX.Element {
       <Styled.Section>
         <p>Text field</p>
         <TextField onChange={(e) => console.log(e.target.value)} />
+      </Styled.Section>
+
+      {/* text area */}
+      <Styled.Section>
+        <p>Text field</p>
+        <TextArea
+          onChange={(e) => console.log(e.target.value)}
+          style={{ width: '460px' }}
+          rows={4}
+        />
+      </Styled.Section>
+
+      {/* text data to text html sample*/}
+      <Styled.Section>
+        <p>Text data to text html sample</p>
+        <TextData2TextHtml />
       </Styled.Section>
 
       {/* Clip board copy */}
