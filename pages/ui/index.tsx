@@ -13,6 +13,8 @@ import IconButton from '../../components/ui/icon-button';
 import IconLink from '../../components/ui/icon-link';
 import Slider from '../../components/ui/slider';
 import TextData2TextHtml from '../../components/textData2TextHtml';
+import StretchText from '../../components/ui/stretchText';
+import { relative } from 'node:path';
 
 
 export default function Index(): JSX.Element {
@@ -122,6 +124,27 @@ export default function Index(): JSX.Element {
           value={rangeValue}
         />
         <p>{rangeValue}</p>
+      </Styled.Section>
+
+      <Styled.Section>
+        <p>Stretch text</p>
+        <div
+          style={{
+            height: '4rem',
+            margin: '0 0 0 12rem',
+            position: 'relative',
+          }}
+        >
+          <StretchText
+            maxWidth={450}
+            style={{
+              position: 'absolute',
+              bottom: 0,
+            }}
+          >
+            Hovering over this element will extend it to 450px
+          </StretchText>
+        </div>
       </Styled.Section>
     </Layout>
   );

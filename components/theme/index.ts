@@ -1,6 +1,7 @@
 export default {
   colors: {
     primary: '#c647f9',
+    secondly: '#03A9F4',
   },
   iconButton: {
     background: '#03A9F4',
