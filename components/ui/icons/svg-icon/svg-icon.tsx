@@ -1,12 +1,10 @@
-import * as CSS from 'csstype';
 import * as React from 'react';
 import * as Styled from './svg-icon.styled';
-import { WidthProperty } from 'csstype';
 import classNames from 'classnames';
 
 export interface Props extends React.SVGAttributes<SVGElement> {
-  color?: CSS.Color;
-  diameter?: WidthProperty<number>;
+  color?: string;
+  diameter?: number;
   disabled?: boolean;
   rotate?: number;
   matrix?: [number, number, number, number, number, number];
