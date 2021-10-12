@@ -14,8 +14,7 @@ import IconLink from '../../components/ui/icon-link';
 import Slider from '../../components/ui/slider';
 import TextData2TextHtml from '../../components/textData2TextHtml';
 import StretchText from '../../components/ui/stretchText';
-import { relative } from 'node:path';
-
+import CircleAngle from '../../components/ui/circle-angle';
 
 export default function Index(): JSX.Element {
   // PhoneField
@@ -145,6 +144,11 @@ export default function Index(): JSX.Element {
             Hovering over this element will extend it to 450px
           </StretchText>
         </div>
+      </Styled.Section>
+
+      <Styled.Section>
+        <p>Circle Angle</p>
+        <CircleAngle />
       </Styled.Section>
     </Layout>
   );
