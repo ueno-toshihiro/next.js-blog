@@ -5,7 +5,7 @@ jobs:
   build:
     working_directory: ~/mern-starter # ステップが実行されるディレクトリ
     docker: # Docker でステップを実行します
-      - image: circleci/node:10.16.3 # このイメージをすべての `steps` が実行されるプライマリ コンテナとして使用します
+      - image: circleci/node:14.17.5 # このイメージをすべての `steps` が実行されるプライマリ コンテナとして使用します
 
     parameters:
       slack-title:
