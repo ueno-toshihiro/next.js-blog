@@ -1,1 +1,1 @@
-export { default } from './StretchText';
+export { default } from './stretchText';

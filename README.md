@@ -14,7 +14,8 @@ Add pull Request to github. and display the comment at vercel admin.
 amplify publish
 ```
 output blog site
-https://dev.dtirzg0nc0516.amplifyapp.com
+NEW 2022
+https://dev.d2wxp7vqs41716.amplifyapp.com
 
 ## build and upload
 ```
