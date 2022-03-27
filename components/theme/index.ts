@@ -1,7 +1,11 @@
+/**
+ * NOTE: 色の明暗は、polished を使う
+ * import { darken, lighten } from 'polished';
+ */
 export default {
   colors: {
     primary: '#c647f9',
-    secondly: '#03A9F4',
+    secondary: '#03A9F4',
   },
   iconButton: {
     background: '#03A9F4',
@@ -15,7 +19,9 @@ export default {
   },
   palette: {
     text: {
+      danger: 'red',
       disabled: '#ccc',
+      main: '#000',
     },
   },
 };

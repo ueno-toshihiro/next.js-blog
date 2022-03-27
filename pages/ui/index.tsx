@@ -15,6 +15,7 @@ import Slider from '../../components/ui/slider';
 import TextData2TextHtml from '../../components/textData2TextHtml';
 import StretchText from '../../components/ui/stretchText';
 import CircleAngle from '../../components/ui/circle-angle';
+import Dropdown from '../../components/sample/dropdown';
 
 export default function Index(): JSX.Element {
   // PhoneField
@@ -63,6 +64,14 @@ export default function Index(): JSX.Element {
       <Styled.Section>
         <p>Clip board copy</p>
         <ClipBoardCopy text="default text!!" />
+      </Styled.Section>
+
+      {/* DorpDown menu */}
+      <Styled.Section
+        style={{ position: 'relative',zIndex: 11 }}
+      >
+        <p>DropDown menu</p>
+        <Dropdown />
       </Styled.Section>
 
       {/* Table */}
