@@ -16,6 +16,7 @@ import TextData2TextHtml from '../../components/textData2TextHtml';
 import StretchText from '../../components/ui/stretchText';
 import CircleAngle from '../../components/ui/circle-angle';
 import Dropdown from '../../components/sample/dropdown';
+import ToggleCheck from '../../components/sample/toggle-check';
 
 export default function Index(): JSX.Element {
   // PhoneField
@@ -36,6 +37,12 @@ export default function Index(): JSX.Element {
       <Styled.Section>
         <p>Toggle button</p>
         <ButtonToggle />
+      </Styled.Section>
+
+      {/* Toggle check */}
+      <Styled.Section>
+        <p>Toggle Check Button</p>
+        <ToggleCheck />
       </Styled.Section>
 
       {/* text field */}
@@ -159,6 +166,7 @@ export default function Index(): JSX.Element {
         <p>Circle Angle</p>
         <CircleAngle />
       </Styled.Section>
+
     </Layout>
   );
 }

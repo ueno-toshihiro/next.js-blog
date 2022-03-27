@@ -30,6 +30,7 @@
     "react-pdf": "^5.2.0",
     "react-phone-number-input": "^3.1.21",
     "react-popper": "^2.2.5",
+    "react-toggle": "^4.1.2",
     "remark": "^13.0.0",
     "remark-html": "^13.0.1",
     "sass": "^1.32.7",
