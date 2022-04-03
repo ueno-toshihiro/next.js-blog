@@ -17,6 +17,7 @@ import StretchText from '../../components/ui/stretchText';
 import CircleAngle from '../../components/ui/circle-angle';
 import Dropdown from '../../components/sample/dropdown';
 import ToggleCheck from '../../components/sample/toggle-check';
+import SearchBox from '../../components/sample/search-box';
 
 export default function Index(): JSX.Element {
   // PhoneField
@@ -59,6 +60,12 @@ export default function Index(): JSX.Element {
           style={{ width: '460px' }}
           rows={4}
         />
+      </Styled.Section>
+
+      {/* text field search box */}
+      <Styled.Section>
+        <p>Search box (Debounced search text 入力イベント処理)</p>
+        <SearchBox />
       </Styled.Section>
 
       {/* text data to text html sample*/}
