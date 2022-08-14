@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { useState } from 'react';
-import Layout from '@/components/layout';
-import PDFtoImage from '@/components/pdf2image';
-import PDFtoImages from '@/components/pdf2images';
+import Layout from '@/components/layout/layout';
+import PDFtoImage from '@/components/pdf2image/pdf2image';
+import PDFtoImages from '@/components/pdf2image/pdf2images';
 
 export default function Index(): JSX.Element {
   const [isSingle, setIsSingle] = useState(false);

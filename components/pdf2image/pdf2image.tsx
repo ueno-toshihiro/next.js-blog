@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useState } from 'react';
 import styled from 'styled-components';
 import dynamic from 'next/dynamic';
-const PdfViewer = dynamic(() => import('../lib/pdfViewer'), { ssr: false });
+const PdfViewer = dynamic(() => import('../../lib/pdfViewer'), { ssr: false });
 
 const Label = styled.div``;
 const Input = styled.input`

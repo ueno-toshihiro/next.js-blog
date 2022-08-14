@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as Styled from '@/components/ui/ui.styled';
-import Layout from '@/components/layout';
+import Layout from '@/components/layout/layout';
 import Button from '@/components/ui/button';
 import ButtonToggle from '@/components/ui/button-toggle';
 import ClipBoardCopy from '@/components/ui/clip-board-copy';

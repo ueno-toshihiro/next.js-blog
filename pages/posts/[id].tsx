@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Layout from '@/components/layout';
+import Layout from '@/components/layout/layout';
 import { getAllPostIds, getPostData } from '../../lib/posts';
 import { GetStaticProps, GetStaticPaths } from 'next';
 
