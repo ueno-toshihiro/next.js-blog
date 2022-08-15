@@ -108,11 +108,6 @@ export default function Layout({ children, home }: LayoutPopsType): JSX.Element 
                 <Styled.HeadImage src="/images/logo.png" alt="UENO" />
               </a>
             </Link>
-            <h2 className={utilStyles.headingLg}>
-              <Link href="/">
-                <a className={utilStyles.colorInherit}>TOP PAGE</a>
-              </Link>
-            </h2>
             {LoginElm}
           </Styled.Header>
         )}
@@ -124,7 +119,7 @@ export default function Layout({ children, home }: LayoutPopsType): JSX.Element 
             <Link href="/">
               <Styled.BackButton>
                 <Styled.Triangle />
-                <Styled.ButtonText>Back</Styled.ButtonText>
+                <Styled.ButtonText>Top Page</Styled.ButtonText>
               </Styled.BackButton>
             </Link>
           </Styled.FooterContent>

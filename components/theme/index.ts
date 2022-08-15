@@ -6,7 +6,11 @@ export default {
   colors: {
     primary: '#c647f9',
     secondary: '#03A9F4',
-    grey: '#a5a4a5',
+    grey: {
+      main: '#a5a4a5',
+      light: '#e8ecef',
+    },
+    white: '#fff',
   },
   iconButton: {
     background: '#03A9F4',
@@ -22,7 +26,8 @@ export default {
     text: {
       danger: 'red',
       disabled: '#ccc',
-      main: '#000',
+      main: '#2c2c2c',
+      light: '#fff'
     },
   },
 };

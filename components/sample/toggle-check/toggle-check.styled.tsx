@@ -42,7 +42,7 @@ export const ToggleWrapper = styled.label`
   }
 
   .react-toggle:hover:not(.react-toggle--disabled) .react-toggle-track {
-    background-color: ${(props): string => props.theme.colors.grey};
+    background-color: ${(props): string => props.theme.colors.grey.main};
   }
 
   .react-toggle--checked:hover:not(.react-toggle--disabled)

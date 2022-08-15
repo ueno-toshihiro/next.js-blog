@@ -37,7 +37,7 @@ const SearchBox: React.FC<Props> = ({ onChange }) => {
           color={
             focusBox
               ? defaultTheme.colors.primary
-              : defaultTheme.colors.grey
+              : defaultTheme.colors.grey.main
           }
         />
       </Styled.SearchBoxWrapper>

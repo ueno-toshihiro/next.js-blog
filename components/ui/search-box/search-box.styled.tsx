@@ -27,7 +27,7 @@ export const SearchBoxWrapper = styled.div`
 
 export const SearchBox = styled.input`
   border-radius: 6px;
-  border: 1px solid ${(props): string => props.theme.colors.grey};
+  border: 1px solid ${(props): string => props.theme.colors.grey.main};
   font-size: 1rem;
   height: 40px;
   padding-left: 48px;
