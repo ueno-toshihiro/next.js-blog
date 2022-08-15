@@ -9,17 +9,19 @@ export default function Index(): JSX.Element {
 
   return (
     <Layout>
-      PDF to Canvas
-      <div>{isSingle ? 'PDF ページめくり' : 'PDF 一覧表示'}</div>
-      <br />
-      {isSingle && <PDFtoImage />}
-      {!isSingle && <PDFtoImages />}
-      <button disabled={isSingle} onClick={() => setIsSingle(true)}>
-        PDF ページめくり
-      </button>
-      <button disabled={!isSingle} onClick={() => setIsSingle(false)}>
-        PDF 一覧表示
-      </button>
+      <section>
+        PDF to Canvas
+        <div>{isSingle ? 'PDF ページめくり' : 'PDF 一覧表示'}</div>
+        <br />
+        {isSingle && <PDFtoImage />}
+        {!isSingle && <PDFtoImages />}
+        <button disabled={isSingle} onClick={() => setIsSingle(true)}>
+          PDF ページめくり
+        </button>
+        <button disabled={!isSingle} onClick={() => setIsSingle(false)}>
+          PDF 一覧表示
+        </button>
+      </section>
     </Layout>
   );
 }

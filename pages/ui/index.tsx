@@ -26,154 +26,155 @@ export default function Index(): JSX.Element {
 
   return (
     <Layout>
-      <Styled.Title>UI Components</Styled.Title>
+      <section>
+        <Styled.Title>UI Components</Styled.Title>
 
-      {/* Button */}
-      <Styled.Section>
-        <p>Button</p>
-        <Button>ボタン</Button>
-      </Styled.Section>
+        {/* Button */}
+        <Styled.Section>
+          <p>Button</p>
+          <Button>ボタン</Button>
+        </Styled.Section>
 
-      {/* Toggle button */}
-      <Styled.Section>
-        <p>Toggle button</p>
-        <ButtonToggle />
-      </Styled.Section>
+        {/* Toggle button */}
+        <Styled.Section>
+          <p>Toggle button</p>
+          <ButtonToggle />
+        </Styled.Section>
 
-      {/* Toggle check */}
-      <Styled.Section>
-        <p>Toggle Check Button</p>
-        <ToggleCheck />
-      </Styled.Section>
+        {/* Toggle check */}
+        <Styled.Section>
+          <p>Toggle Check Button</p>
+          <ToggleCheck />
+        </Styled.Section>
 
-      {/* text field */}
-      <Styled.Section>
-        <p>Text field</p>
-        <TextField onChange={(e) => console.log(e.target.value)} />
-      </Styled.Section>
+        {/* text field */}
+        <Styled.Section>
+          <p>Text field</p>
+          <TextField onChange={(e) => console.log(e.target.value)} />
+        </Styled.Section>
 
-      {/* text area */}
-      <Styled.Section>
-        <p>Text field</p>
-        <TextArea
-          onChange={(e) => console.log(e.target.value)}
-          style={{ width: '460px' }}
-          rows={4}
-        />
-      </Styled.Section>
+        {/* text area */}
+        <Styled.Section>
+          <p>Text field</p>
+          <TextArea
+            onChange={(e) => console.log(e.target.value)}
+            style={{ width: '460px' }}
+            rows={4}
+          />
+        </Styled.Section>
 
-      {/* text field search box */}
-      <Styled.Section>
-        <p>Search box (Debounced search text 入力イベント処理)</p>
-        <SearchBox />
-      </Styled.Section>
+        {/* text field search box */}
+        <Styled.Section>
+          <p>Search box (Debounced search text 入力イベント処理)</p>
+          <SearchBox />
+        </Styled.Section>
 
-      {/* text data to text html sample*/}
-      <Styled.Section>
-        <p>Text data to text html sample</p>
-        <TextData2TextHtml />
-      </Styled.Section>
+        {/* text data to text html sample*/}
+        <Styled.Section>
+          <p>Text data to text html sample</p>
+          <TextData2TextHtml />
+        </Styled.Section>
 
-      {/* Clip board copy */}
-      <Styled.Section>
-        <p>Clip board copy</p>
-        <ClipBoardCopy text="default text!!" />
-      </Styled.Section>
+        {/* Clip board copy */}
+        <Styled.Section>
+          <p>Clip board copy</p>
+          <ClipBoardCopy text="default text!!" />
+        </Styled.Section>
 
-      {/* DorpDown menu */}
-      <Styled.Section
-        style={{ position: 'relative',zIndex: 11 }}
-      >
-        <p>DropDown menu</p>
-        <Dropdown />
-      </Styled.Section>
-
-      {/* Table */}
-      <Styled.Section>
-        <p>Table</p>
-        <Table />
-      </Styled.Section>
-
-      {/* react-phone-number-input */}
-      <Styled.Section>
-        <p>Phone Field</p>
-        <PhoneField
-          isUseInputComponent={false}
-          value={phoneFieldValue}
-          onChange={setPhoneFieldValue}
-        />
-        <br/>
-        <p>Phone Field (use inputComponent)</p>
-        <PhoneField
-          isUseInputComponent
-          value={phoneFieldValue}
-          onChange={setPhoneFieldValue}
-        />
-        <p>{phoneFieldValue}</p>
-      </Styled.Section>
-
-      <Styled.Section>
-        <p>Icons</p>
-        <ArrowDown diameter={32} />
-        <ArrowLeft diameter={32} />
-      </Styled.Section>
-      
-      <Styled.Section>
-        <p>Icons Button</p>
-        <IconButton onClick={() => console.log('Icon Click!')}>
-          <ArrowDown diameter={32} color={'#fff'} />
-        </IconButton>
-      </Styled.Section>
-
-      <Styled.Section>
-        <p>Icons Link</p>
-        <IconLink
-          href={'javascript:console.log("Icon Click!")'}
-          label="Icon Link"
-          style={{ display: 'flex', alignItems: 'center' }}
+        {/* DorpDown menu */}
+        <Styled.Section
+          style={{ position: 'relative',zIndex: 11 }}
         >
+          <p>DropDown menu</p>
+          <Dropdown />
+        </Styled.Section>
+
+        {/* Table */}
+        <Styled.Section>
+          <p>Table</p>
+          <Table />
+        </Styled.Section>
+
+        {/* react-phone-number-input */}
+        <Styled.Section>
+          <p>Phone Field</p>
+          <PhoneField
+            isUseInputComponent={false}
+            value={phoneFieldValue}
+            onChange={setPhoneFieldValue}
+          />
+          <br/>
+          <p>Phone Field (use inputComponent)</p>
+          <PhoneField
+            isUseInputComponent
+            value={phoneFieldValue}
+            onChange={setPhoneFieldValue}
+          />
+          <p>{phoneFieldValue}</p>
+        </Styled.Section>
+
+        <Styled.Section>
+          <p>Icons</p>
           <ArrowDown diameter={32} />
-        </IconLink>
-      </Styled.Section>
+          <ArrowLeft diameter={32} />
+        </Styled.Section>
+        
+        <Styled.Section>
+          <p>Icons Button</p>
+          <IconButton onClick={() => console.log('Icon Click!')}>
+            <ArrowDown diameter={32} color={'#fff'} />
+          </IconButton>
+        </Styled.Section>
 
-      <Styled.Section>
-        <p>Range slider</p>
-        <Slider
-          max={1}
-          min={0.1}
-          onChange={setRangeValue}
-          step={0.05}
-          value={rangeValue}
-        />
-        <p>{rangeValue}</p>
-      </Styled.Section>
+        <Styled.Section>
+          <p>Icons Link</p>
+          <IconLink
+            href={'javascript:console.log("Icon Click!")'}
+            label="Icon Link"
+            style={{ display: 'flex', alignItems: 'center' }}
+          >
+            <ArrowDown diameter={32} />
+          </IconLink>
+        </Styled.Section>
 
-      <Styled.Section>
-        <p>Stretch text</p>
-        <div
-          style={{
-            height: '4rem',
-            margin: '0 0 0 12rem',
-            position: 'relative',
-          }}
-        >
-          <StretchText
-            maxWidth={450}
+        <Styled.Section>
+          <p>Range slider</p>
+          <Slider
+            max={1}
+            min={0.1}
+            onChange={setRangeValue}
+            step={0.05}
+            value={rangeValue}
+          />
+          <p>{rangeValue}</p>
+        </Styled.Section>
+
+        <Styled.Section>
+          <p>Stretch text</p>
+          <div
             style={{
-              position: 'absolute',
-              bottom: 0,
+              height: '4rem',
+              margin: '0 0 0 12rem',
+              position: 'relative',
             }}
           >
-            Hovering over this element will extend it to 450px
-          </StretchText>
-        </div>
-      </Styled.Section>
+            <StretchText
+              maxWidth={450}
+              style={{
+                position: 'absolute',
+                bottom: 0,
+              }}
+            >
+              Hovering over this element will extend it to 450px
+            </StretchText>
+          </div>
+        </Styled.Section>
 
-      <Styled.Section>
-        <p>Circle Angle</p>
-        <CircleAngle />
-      </Styled.Section>
-
+        <Styled.Section>
+          <p>Circle Angle</p>
+          <CircleAngle />
+        </Styled.Section>
+      </section>
     </Layout>
   );
 }

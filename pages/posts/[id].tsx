@@ -15,13 +15,15 @@ type PostPropsType = {
 export default function Post({ postData }: PostPropsType): JSX.Element {
   return (
     <Layout>
-      {postData.title}
-      <br />
-      {postData.id}
-      <br />
-      {postData.date}
-      <br />
-      <div dangerouslySetInnerHTML={{ __html: postData.contentHtml }} />
+      <section>
+        {postData.title}
+        <br />
+        {postData.id}
+        <br />
+        {postData.date}
+        <br />
+        <div dangerouslySetInnerHTML={{ __html: postData.contentHtml }} />
+      </section>
     </Layout>
   );
 }
