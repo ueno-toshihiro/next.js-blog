@@ -2,8 +2,8 @@ import * as React from 'react';
 import * as Styled from './layout.styled';
 import Head from 'next/head';
 import Link from 'next/link';
-import utilStyles from '../../styles/utils.module.scss';
 import Amplify, { Auth, Hub } from 'aws-amplify';
+import Specials from '@/components/specials';
 
 // NOTE: Cognitoでサインイン機能をつける
 // https://dev.classmethod.jp/articles/react-cognito-signin/
@@ -113,7 +113,12 @@ export default function Layout({ children, home }: LayoutPopsType): JSX.Element 
         )}
       </header>
       <main>{children}</main>
-      {!home && (
+      {home ? (
+        <footer>
+          {/* My Contents */}
+          <Specials />
+        </footer>
+      ) : (
         <footer>
           <Styled.FooterContent>
             <Link href="/">

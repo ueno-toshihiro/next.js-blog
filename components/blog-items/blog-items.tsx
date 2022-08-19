@@ -2,7 +2,6 @@ import * as React from 'react';
 import * as Styled from './blog-items.styled';
 import Card from '@/components/ui/card';
 import Grid from '@/components/ui/grid/grid';
-import Link from 'next/link';
 import { useRouter } from 'next/router';
 
 type Props = {

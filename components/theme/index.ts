@@ -11,6 +11,9 @@ export default {
       light: '#e8ecef',
     },
     white: '#fff',
+    blue: {
+      light: '#f1f4f7',
+    }
   },
   iconButton: {
     background: '#03A9F4',
